@@ -114,7 +114,9 @@ function sumList(l1,l2){
     let resEnd
     let carry=0;
     while(current1 || current2){
-        let sum=current1.data+current2.data+carry;
+        let c1val=current1 ? current1.data : 0
+        let c2val=current2 ? current2.data : 0
+        let sum=c1val +c2val +carry;
         
         if(sum<=9){
             if(!resHead){
@@ -141,8 +143,8 @@ function sumList(l1,l2){
             carry=Math.floor(sum/10)
 
         }
-        current1=current1.next || null;
-        current2=current2.next || null;
+        current1= current1? current1.next : null
+        current2= current2? current2.next : null
     }
     if(carry>0){
         resEnd.next=new Node(carry)
@@ -153,12 +155,13 @@ function sumList(l1,l2){
 l1=new LinkedList()
 l2=new LinkedList()
 
-l1.insertLast(6)
 l1.insertLast(1)
-l1.insertLast(7)
+l1.insertLast(0)
+l1.insertLast(1)
 
-l2.insertLast(2)
-l2.insertLast(9)
 l2.insertLast(5)
+l2.insertLast(0)
+l2.insertLast(5)
+l2.insertLast(1)
 
 sumList(l1,l2)
